@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.yinhai.mapper.UserMapper" >
+  
+  <!-- 用户注册功能 -->
+  <insert id="insertUser" parameterType="User" >
+  	insert into rsrc_user values (null,#{ruUserName},#{ruName},#{ruIdentityCode},md5(#{ruPassword}),
+  	     #{ruMobile},#{ruEmail},#{rduName},now(),now(),#{ruStatus})
+  </insert>
+  
+  <!-- 用户登录功能 -->
+  <select id="findUser" parameterType="User" resultType="User">
+  	select ru_user_name from rsrc_user where ru_user_name=#{ruUserName} and ru_password=md5(#{ruPassword})
+  </select>
+  
+</mapper>
